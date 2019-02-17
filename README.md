@@ -1,22 +1,25 @@
-Help on module FY6xxx:
+Help on class FY6xxx:
 
 NAME
     FY6xxx
 
 FILE
-    /home/nikki/PycharmProjects/FY6xxx/FY6xxx.py
+/home/nikki/PycharmProjects/FY6xxx/FY6xxx.py
 
 DESCRIPTION
-    Module: FY6xxx  FeelElec FY6800 serial communication protocol library
+
+    Module:  FY6xxx FeelElec FY6800 serial communication protocol library for python
     Version: 0.1
-    Date: 17Feb2019
-    Author: Nikki Cooper
-
+    Date:    17Feb2019
+    Author:  Nikki Cooper
+    
     For documentation issue the following on the command line:
+    
     pydoc FY6xxx
-
+    
     Licensed under the GPL v3 by Nikki Cooper.
-
+    
+    
 CLASSES
     __builtin__.object
 	FY6800
@@ -32,8 +35,8 @@ CLASSES
      |	    :param device:	   string, Serial port device such as /dev/ttyUSB1
      |	    :param printsettings:  bool,   Print serial port parameters and exit program
      |	    :param muteexceptions: bool,   Mute printing of serial port exception errors to console
-     |	    :param readtimeout:	   float,  Set the read data from serial device timeout in sec. def: 1 sec
-     |	    :param writetimeout:   float,  Set the write data to serial device timeout in sec.	def: 0.25 sec
+     |	    :param readtimeout:	   float,  Set the read data from device timeout in sec. def: 1 sec
+     |	    :param writetimeout:   float,  Set the write data to device timeout in sec. def: 0.25 sec
      |
      |	    :return   0:  Normal exit code
      |	    :return 255:  Error opening serial device
@@ -43,8 +46,8 @@ CLASSES
      |
      |	    Example invocation: fy6800 = FY6xxx.FY6800("/dev/ttyUSB1")
      |				fy6800 = FY6XXX.FY6800(printsettings=True)
-     |				fy6800 = FY6XXX.FY6800("/dev/ttyUSB1",muteexceptions=True)
-     |				fy6800 = FY6XXX.FY6800("/dev/ttyUSB1", readtimeout=-0.80)
+     |				fy6800 = FY6XXX.FY6800("/dev/ttyUSB1", muteexceptions=True)
+     |				fy6800 = FY6XXX.FY6800("/dev/ttyUSB1", readtimeout=5)
      |
      |	addSyncMode(self, syncobj)
      |	    Add synchronization mode
