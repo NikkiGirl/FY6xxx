@@ -21,67 +21,7 @@ import time
 """
  To list the available serial ports on your system:
  python -m serial.tools.list_ports
- 
- 
- FY6xx.FY6800 accepts the following parameters as defaults:
- 
- device=None            The serial device such as '/dev/ttyUSB1'
- printsettings=None     Prints the serial device parameters and exits
- muteexeceptions=False  Mutes all serial port exception error messages
- readtimeout=1          Sets the serial device read timeout in seconds
- writetimeout=0.25      Sets the serial device write timeout in seconds
- 
- ** At bare minimum you need to specify a valid serial device! **
- 
- Note:  readtimeout and writetimeout deserve special consideration. 
-        DO NOT set either of them to zero.  You have been warned! 
-        Try the defaults first, and only change if there are timing issues.
-        Probably shouldn't ever need changing, however, different systems may
-        neeed special consideration.  YMMV. Just because this example code may
-        use readtimeout=5, doesn't necessarily mean you should use it. 
  """
-
-fy6800 = FY6xxx.FY6800("/dev/ttyUSB1", readtimeout=5)
-
-
-ON = 1
-OFF = 0
-
-# These are NEW the values written to the FY6800
-ch1Waveform = 'Sine'
-ch2Waveform = 'Triangle'
-ch1WaveformFreq = "10115000000000"
-ch2WaveformFreq = "00001000000000"
-ch1WaveformAmplitude = "3.1459"
-ch2WaveformAmplitude = "6.2918"
-
-# The NEW values above, written to the FY6800, are then read into these
-CH1new = ''
-CH2new = ''
-ch1WaveformNew = ''
-ch2WaveformNew = ''
-ch1WaveformFreqNew = ''
-ch2WaveformFreqNew = ''
-ch1WaveformAmplitudeNew = ''
-ch2WaveformAmplitudeNew = ''
-
-# DEFAULT settings to set CH1 & CH2 to.  Write to FY6800 to set some sane defaults.
-ch1WaveformDef = 'Sine'
-ch1WaveformFreqDef = "00010000000000"
-ch1WaveformAmplitudeDef = "5.0"
-ch2WaveformDef = ch1WaveformDef
-ch2WaveformFreqDef = ch1WaveformFreqDef
-ch2WaveformAmplitudeDef = ch1WaveformAmplitudeDef
-
-# Read the DEFAULT settings from the FY6800 into these variables
-CH1org = ''
-CH2org = ''
-ch1WaveformOrg = ''
-ch2WaveformOrg = ''
-ch1WaveformFreqOrg = ''
-ch2WaveformFreqOrg = ''
-ch1WaveformAmplitudeOrg = ''
-ch2WaveformAmplitudeOrg = ''
 
 # Set the FY6800 to some sane default values first
 def setDefaults():
@@ -170,21 +110,71 @@ def toggleOutputs(status):
         fy6800.setCh1Status(ON)
     else:
         fy6800.setCh1Status(OFF)
-        fy6800.setCh2Status(OFF)
+        fy6800.setCh2Status(OFF)       
        
-      
 
-"""
-NOTE:    It kind of sort of matters the order in which these functions are called.
-WHY:     For some reason the display follows the command sent to the FY6800.
-EXAMPLE: Toggling CH1 or CH2 is the same as pressing the CH1 or CH2 button on the unit.
-         The screen changes to reflect this.  At first glance: Cool.
-         In practice: Annoying.  Screen updates are slow.  The FY6800 can become confused
-         if attempting to write data to it while these updates are occuring. I would have
-         preferred the display to remain static and be given some remote commands to change
-         to the desired display, but unfortunately the source code to the FY6800 is closed.
-         Much room for improvement there.
-         
+ON = 1
+OFF = 0
+
+# These are NEW the values written to the FY6800
+ch1Waveform = 'Sine'
+ch2Waveform = 'Triangle'
+ch1WaveformFreq = "10115000000000"
+ch2WaveformFreq = "00001000000000"
+ch1WaveformAmplitude = "3.1459"
+ch2WaveformAmplitude = "6.2918"
+
+# The NEW values above, written to the FY6800, are then read into these
+CH1new = ''
+CH2new = ''
+ch1WaveformNew = ''
+ch2WaveformNew = ''
+ch1WaveformFreqNew = ''
+ch2WaveformFreqNew = ''
+ch1WaveformAmplitudeNew = ''
+ch2WaveformAmplitudeNew = ''
+
+# DEFAULT settings to set CH1 & CH2 to.  Write to FY6800 to set some sane defaults.
+ch1WaveformDef = 'Sine'
+ch1WaveformFreqDef = "00010000000000"
+ch1WaveformAmplitudeDef = "5.0"
+ch2WaveformDef = ch1WaveformDef
+ch2WaveformFreqDef = ch1WaveformFreqDef
+ch2WaveformAmplitudeDef = ch1WaveformAmplitudeDef
+
+# Read the DEFAULT settings from the FY6800 into these variables
+CH1org = ''
+CH2org = ''
+ch1WaveformOrg = ''
+ch2WaveformOrg = ''
+ch1WaveformFreqOrg = ''
+ch2WaveformFreqOrg = ''
+ch1WaveformAmplitudeOrg = ''
+ch2WaveformAmplitudeOrg = ''
+
+ """
+ FY6xx.FY6800 accepts the following parameters as defaults:
+ 
+ device=None            The serial device such as '/dev/ttyUSB1'
+ printsettings=None     Prints the serial device parameters and exits
+ muteexeceptions=False  Mutes all serial port exception error messages
+ readtimeout=1          Sets the serial device read timeout in seconds
+ writetimeout=0.25      Sets the serial device write timeout in seconds
+ 
+ ** At bare minimum you need to specify a valid serial device! **
+ 
+ Note:  readtimeout and writetimeout deserve special consideration. 
+        DO NOT set either of them to zero.  You have been warned! 
+        Try the defaults first, and only change if there are timing issues.
+        Probably shouldn't ever need changing, however, different systems may
+        neeed special consideration.  YMMV. Just because this example code may
+        use readtimeout=5, doesn't necessarily mean you should use it. 
+ """
+
+fy6800 = FY6xxx.FY6800("/dev/ttyUSB1", readtimeout=5)
+print "FY6xxx test program\n"
+
+"""         
 This test script accomplishes the following:
 1 - Disable buzzer
 2 - Disable CH1 & CH2
@@ -194,10 +184,17 @@ This test script accomplishes the following:
 6 - Read them back into a set of variables and print them out
 7 - Enable buzzer
 8 - Enable CH1 & CH2
+
+NOTE:    It kind of sort of matters the order in which these functions are called.
+WHY:     For some reason the display follows the command sent to the FY6800.
+EXAMPLE: Toggling CH1 or CH2 is the same as pressing the CH1 or CH2 button on the unit.
+         The screen changes to reflect this.  At first glance: Cool.
+         In practice: Annoying.  Screen updates are slow.  The FY6800 can become confused
+         if attempting to write data to it while these updates are occuring. I would have
+         preferred the display to remain static and be given some remote commands to change
+         to the desired display, but unfortunately the source code to the FY6800 is closed.
+         Much room for improvement there.
 """
-
-
-print "FY6xxx test program\n"
 
 # buzzer off
 fy6800.setBuzzerStatus(OFF)
