@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Example python script to test the FY6xxx class library
-Requires a FeelElec FY6800, however, a FY6600, will probbably
+Requires a FeelElec FY6800, however, a FY6600, will probably
 work with for the most part, but may require some slight changes.
 
 Requires:  pyserial
