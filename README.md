@@ -4,7 +4,7 @@ NAME
     FY6xxx
 
 FILE
-/home/nikki/PycharmProjects/FY6xxx/FY6xxx.py
+    FY6xxx.py
 
 DESCRIPTION
 
@@ -12,6 +12,7 @@ DESCRIPTION
     Version: 0.1
     Date:    17Feb2019
     Author:  Nikki Cooper
+    Python:  Versions 2.7.x and 3.6.x
     
     For documentation issue the following on the command line:
     
