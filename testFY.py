@@ -6,8 +6,7 @@ work with for the most part, but may require some slight changes.
 
 Requires:  pyserial
 
-So far, it's only been tested under python 2.7.  This will likely change
-in later versions.
+Developed in python 2.7 and tested with python 3.6.x
 
 For library documentation issue the following at the command line:
 pydoc FY6xxx
@@ -16,7 +15,6 @@ Licensed under the GPL v3 by Nikki Cooper.
 """
 
 import FY6xxx
-import time
 
 """
  To list the available serial ports on your system:

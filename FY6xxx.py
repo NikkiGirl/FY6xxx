@@ -10,7 +10,7 @@ pydoc FY6xxx
 Licensed under the GPL v3 by Nikki Cooper.
 """
 
-import serial, time
+import serial
 
 
 """
