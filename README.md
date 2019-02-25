@@ -1,9 +1,11 @@
 Help on class FY6xxx:
 
-NAME
+NAME:
+
     FY6xxx
 
-FILE
+FILE:
+
     FY6xxx.py
 
 DESCRIPTION
