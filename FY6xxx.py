@@ -66,6 +66,7 @@ class FY6XXX_Serial(object):
                                   xonxoff=False, timeout=readtimeout, write_timeout=writetimeout)
         self.response = ''
         self.LF = "\n"
+        self.cmd = ''
 
         try:
             self.port.port = self.device
@@ -84,7 +85,7 @@ class FY6XXX_Serial(object):
 
             except (Exception, e):
                 if not self.muteexceptions:
-                    print "Error communicating... " + str(e)
+                    print("Error communicating... " + str(e))
                 self.port.close()
                 exit(254)
         return
@@ -120,8 +121,9 @@ class FY6XXX_Serial(object):
         Write data to the serial device
         :return: integer, if write timeout is configured for the port and the time is exceeded.
         """
+        self.cmd = cmd + self.LF
         self.port.reset_input_buffer()
-        self.port.write(cmd + self.LF)
+        self.port.write(self.cmd.encode())
         self.port.flush()
         return
 
@@ -178,7 +180,7 @@ class FY6800(object):
             exit(252)
 
         if device is None:
-            print "device was specified as None.  Use a valid serial port such as /dev/ttyUSB1"
+            print("device was specified as None.  Use a valid serial port such as /dev/ttyUSB1")
             exit(253)
 
         self.fy6800 = FY6XXX_Serial(device, muteexceptions, readtimeout, writetimeout)
@@ -258,7 +260,7 @@ class FY6800(object):
         self.cmd = "RMF"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def setCh1WaveFreq(self, freq):
         """
@@ -458,7 +460,7 @@ class FY6800(object):
         self.cmd = "RFF"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def setCh2WaveFreq(self, freq):
         """
@@ -478,7 +480,6 @@ class FY6800(object):
         self.cmd = "RFA"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.read(6)
-#        print self.response.strip(self.LF)
         self.amplitude = float(self.response) / 10000.0
         return self.amplitude
 
@@ -717,7 +718,7 @@ class FY6800(object):
         self.cmd = "UID"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getModel(self):
         """
@@ -727,7 +728,7 @@ class FY6800(object):
         self.cmd = "UMO"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     # Modulation commands #
 
@@ -768,7 +769,7 @@ class FY6800(object):
         self.cmd = "RPN"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def setPulseTrigger(self, pulseamt):
         """
@@ -841,7 +842,7 @@ class FY6800(object):
         self.cmd = "RFK"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def setFSKsecondaryFreq(self, freq):
         """
@@ -901,7 +902,7 @@ class FY6800(object):
         self.cmd = "RCF"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getCounterCnt(self):
         """
@@ -911,7 +912,7 @@ class FY6800(object):
         self.cmd = "RCC"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def resetCounterCnt(self):
         """
@@ -949,7 +950,7 @@ class FY6800(object):
         self.cmd = "RCT"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getCounterPosPulseWidth(self):
         """
@@ -959,7 +960,7 @@ class FY6800(object):
         self.cmd = "RC+"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getCounterNegPulseWidth(self):
         """
@@ -969,7 +970,7 @@ class FY6800(object):
         self.cmd = "RC-"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getCounterDutyCycle(self):
         """
@@ -979,7 +980,7 @@ class FY6800(object):
         self.cmd = "RCD"
         self.fy6800.write(self.cmd)
         self.response = self.fy6800.readline()
-        return self.response.strip(self.LF)
+        return self.response.decode().strip(self.LF)
 
     def getCounterGateTime(self):
         """

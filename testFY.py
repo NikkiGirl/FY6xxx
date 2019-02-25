@@ -57,8 +57,8 @@ def readOriginal():
     CH2org = ch2WaveformOrg + ", " + ch2WaveformFreqOrg + " Hz, " + str(ch2WaveformAmplitudeOrg) + "V"
 
     # Print out the ORIGINAL CH1 & CH2 waveform type, waveform freq and waveform amplitude voltage
-    print "Original CH1: " + CH1org
-    print "Original CH2: " + CH2org
+    print("Original CH1: " + CH1org)
+    print("Original CH2: " + CH2org)
     return
 
 # Once the desired NEW values are written to the FY6800, read them from the FY6800 into these
@@ -80,8 +80,8 @@ def readNew():
     CH2new = ch2WaveformNew + ", "     + ch2WaveformFreqNew + " Hz, " + str(ch2WaveformAmplitudeNew) + "V"
 
     # Print out the NEW CH1 & CH2 waveform type, waveform freq and waveform amplitude voltage
-    print "New CH1: " + CH1new
-    print "New CH2: " + CH2new
+    print("New CH1: " + CH1new)
+    print("New CH2: " + CH2new)
     return
    
 # Set the FY6800 with the new desired values
@@ -92,11 +92,11 @@ def setNew():
 # Set NEW CH1 & CH2 waveform frequencies
     resp = fy6800.setCh1WaveFreq(ch1WaveformFreq)
     if resp == '0xa':
-        print "\nCH1 frequency set to: " + str(float(ch1WaveformFreq) / 1000e9) + " MHz"
+        print("\nCH1 frequency set to: " + str(float(ch1WaveformFreq) / 1000e9) + " MHz")
 
     resp = fy6800.setCh2WaveFreq(ch2WaveformFreq)
     if resp == '0xa':
-        print "CH2 frequency set to:  " + str(float(ch2WaveformFreq) / 1000e6) + " KHz\n"
+        print("CH2 frequency set to:  " + str(float(ch2WaveformFreq) / 1000e6) + " KHz\n")
 
     # Set NEW CH1 & CH2 waveform amplitude voltage
     fy6800.setCh1WaveAmplitude(ch1WaveformAmplitude)
@@ -152,7 +152,8 @@ ch2WaveformFreqOrg = ''
 ch1WaveformAmplitudeOrg = ''
 ch2WaveformAmplitudeOrg = ''
 
- """
+"""
+ 
  FY6xx.FY6800 accepts the following parameters as defaults:
  
  device=None            The serial device such as '/dev/ttyUSB1'
@@ -172,7 +173,7 @@ ch2WaveformAmplitudeOrg = ''
  """
 
 fy6800 = FY6xxx.FY6800("/dev/ttyUSB1", readtimeout=5)
-print "FY6xxx test program\n"
+print("FY6xxx test program\n")
 
 """         
 This test script accomplishes the following:
@@ -213,7 +214,7 @@ fy6800.setBuzzerStatus(ON)
 # CH1 & CH2 outputs enabled
 toggleOutputs(ON)
 
-print "\nThat's all folks!"
+print("\nThat's all folks!")
 
 """
 Expected output:
